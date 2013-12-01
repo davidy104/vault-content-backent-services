@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>nz.co.yellow.parent</groupId>
+    <artifactId>yellow-parent-jar</artifactId>
+    <version>1.8</version>
+  </parent>
+
+  <groupId>nz.co.yellow.vault.content</groupId>
+  <artifactId>vault-content-silicon-client</artifactId>
+  <version>1.23-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+
+  <name>${project.artifactId}-1</name>
+  <description>http interaction and model for talking to silicon api</description>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>nz.co.yellow.espresso</groupId>
+      <artifactId>espresso-testutils</artifactId>
+      <version>[2.5,3)</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>net.stickycode.composite</groupId>
+      <artifactId>sticky-composite-logging-api</artifactId>
+      <version>[2.1,3)</version>
+    </dependency>
+
+    <dependency>
+      <groupId>nz.co.yellow.composite</groupId>
+      <artifactId>yellow-composite-spring3</artifactId>
+      <version>[1.4,2)</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+  </dependencies>
+</project>

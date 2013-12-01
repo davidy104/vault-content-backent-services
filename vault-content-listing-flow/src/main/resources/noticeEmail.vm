@@ -1,0 +1,14 @@
+<html>
+<body>
+	<h4><font color="#0000dd">Dear Administrator,</font></h4>
+	<i>
+	The following Mturk fields list processed failed.
+	</i>
+	<h5><font color="#dd0000">
+  		Yellow list ids:  ${body}.
+  	</font></h5>
+	<h5>
+  	This is an automated email, please do not reply.
+  	</h5>
+</body>
+</html>

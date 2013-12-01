@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>nz.co.yellow.parent</groupId>
+    <artifactId>yellow-parent-application</artifactId>
+    <version>2.4</version>
+  </parent>
+
+  <groupId>nz.co.yellow.vault.content</groupId>
+  <artifactId>vault-content-backend</artifactId>
+  <packaging>jar</packaging>
+  <version>2.9-SNAPSHOT</version>
+  <name>${project.artifactId}-v1</name>
+
+  <description>Provider of Vault content backend data synchronization</description>
+
+  <properties>
+    <yellow.deployment.id>6637</yellow.deployment.id>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>nz.co.yellow.espresso</groupId>
+      <artifactId>espresso-apputils</artifactId>
+      <version>[3.6,4)</version>
+    </dependency>
+
+    <dependency>
+      <groupId>nz.co.yellow.vault.content</groupId>
+      <artifactId>vault-content-silicon-client</artifactId>
+      <version>[1.22,2)</version>
+    </dependency>
+
+    <dependency>
+      <groupId>nz.co.yellow.vault.content</groupId>
+      <artifactId>vault-content-listing-repository-onlinedb</artifactId>
+      <version>[1.13,2)</version>
+    </dependency>
+
+    <dependency>
+      <groupId>nz.co.yellow.vault.content</groupId>
+      <artifactId>vault-content-listing-flow</artifactId>
+      <version>[1.29,2)</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>nz.co.yellow.plugins</groupId>
+        <artifactId>upstart-maven-plugin</artifactId>
+        <configuration>
+          <heapSize>256m</heapSize>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

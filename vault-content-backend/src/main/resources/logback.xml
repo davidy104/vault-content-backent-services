@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss} %.-1level %thread %logger{36}: %m%n</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+  </appender>
+
+  <appender name="FIXED_SIZE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${logDirectory:-/var/log/vault-content-backend-v1}/application.log</file>
+    <!-- Keep 500Mb of logs but compressed and roll every 25mb -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <fileNamePattern>application-%i.log.gz</fileNamePattern>
+      <minIndex>1</minIndex>
+      <maxIndex>20</maxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>25MB</maxFileSize>
+    </triggeringPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd} %d{HH:mm:ss} %.-1level %thread %logger{36}: %m%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+    <!--
+      We always just log to localhost and let the local syslog forward it, that means
+      the forwarding configuration is environment/host specific not application
+    -->
+    <syslogHost>localhost</syslogHost>
+    <!-- All backend applications should use local3 -->
+    <facility>local3</facility>
+    <!--
+      Port 1514 is what rsyslog can bind to when it drops privileges,
+      it may be that this https://bugs.launchpad.net/ubuntu/+source/rsyslog/+bug/789174 will be fixed
+    -->
+    <port>1514</port>
+    <!--
+      The full stack trace is not that useful we should ensure that the message is very meaningful
+      the best way for that is to have specific and well named exceptions
+    -->
+    <throwableExcluded>true</throwableExcluded>
+    <suffixPattern>[vault-content-backend-v1] %logger{36} %msg</suffixPattern>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="SYSLOG" />
+    <appender-ref ref="FIXED_SIZE" />
+  </root>
+</configuration>
+
